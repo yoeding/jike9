@@ -1,0 +1,98 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+	
+function loadXMLDocAdd()
+{    
+	
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	{
+		
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			var json=JSON.parse(xmlhttp.responseText);
+
+			  	var father1=document.getElementById("myDiv1");
+			  	var father2=document.getElementById("myDiv2")
+				
+               var Imagine=document.createElement("img");   
+               Imagine.setAttribute("src",json.img);
+               Imagine.setAttribute("width","200px");
+               Imagine.setAttribute("height","200px");
+               father1.appendChild(Imagine);
+
+               var p1=document.createElement("p");
+               p1.innerHTML="姓名 :"+json.name;
+               father2.appendChild(p1);
+
+                var p2=document.createElement("p");
+               p2.innerHTML="学号 ："+json.number;
+               father2.appendChild(p2);
+
+               var p3=document.createElement("p");
+               p3.innerHTML="就读学校 ："+json.university;
+               father2.appendChild(p3);
+
+                var p4=document.createElement("p");
+               p4.innerHTML="学院 ："+json.college;
+               father2.appendChild(p4);
+
+
+                var p5=document.createElement("p");
+               p5.innerHTML="寝室 ："+json.dorm;
+               father2.appendChild(p5);
+
+
+                var p6=document.createElement("p");
+               p6.innerHTML="学习课程 :";
+               father2.appendChild(p6);
+
+               var li1=document.createElement("li");
+               li1.innerHTML=json.subject[0].sname+" :"+json.subject[0].grade;
+               father2.appendChild(li1);
+
+                var li2=document.createElement("li");
+               li2.innerHTML=json.subject[1].sname+" :"+json.subject[1].grade;
+               father2.appendChild(li2);
+
+                var li3=document.createElement("li");
+               li3.innerHTML=json.subject[2].sname+" :"+json.subject[2].grade;
+               father2.appendChild(li3);
+
+          
+			
+			
+			
+		}
+	}
+		
+	xmlhttp.open("GET","http://mock-api.com/4jzA4LKk.mock/request",true);
+	xmlhttp.send();
+    }
+
+
+
+
+</script>
+</head>
+<body>
+
+
+<button type="button" onclick="loadXMLDocAdd()">点击查看信息呀</button>
+
+<div id="myDiv1"></div>
+<div id="myDiv2"></div>
+</body>
+</html>
